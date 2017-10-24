@@ -12,18 +12,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var local_database = {
-      date: "Sep 20 2016",
-      title: "正是虾肥蟹壮时",
-      imgSrc: "/images/post/crab.png",
-      avatar: "/images/avatar/4.png",
-      content: "菊黄蟹正肥，品尝秋之味。徐志摩把,“看初花的荻芦”和“到楼外楼吃蟹”,并列为秋天来杭州不能错过的风雅之事；用林妹妹的话讲是“螯封嫩玉双双满，",
-      reading: "112",
-      collection: "96",
-      headImgSrc: "/images/post/crab.png",
-      author: "林白衣"
-    }
-    this.setData(local_database);
+    var posts = [
+      {
+        date: "Sep 20 2016",
+        title: "正是虾肥蟹壮时",
+        imgSrc: "/images/post/crab.png",
+        avatar: "/images/avatar/4.png",
+        content: "菊黄蟹正肥，品尝秋之味。徐志摩把,“看初花的荻芦”和“到楼外楼吃蟹”,并列为秋天来杭州不能错过的风雅之事；用林妹妹的话讲是“螯封嫩玉双双满，",
+        reading: "112",
+        collection: "96",
+        author: "林白衣"
+      },
+      {
+        date: "Sep 20 2017",
+        title: "唧唧复唧唧",
+        imgSrc: "/images/post/sls.jpg",
+        avatar: "/images/avatar/5.png",
+        content: "唧唧复唧唧,木兰当户织,不闻机杼声,唯闻女叹息,问女何所似问女何所忆,女亦无所思,女亦无所忆,昨日见军帖,可汗大点兵,兵书十二卷,卷卷有爷名,阿爷无大儿,木兰无长兄,宁为市鞍马,从此替爷征.",
+        reading: "212",
+        collection: "196",
+        author: "林白衣"
+      }
+    ]
+    this.setData({
+      post_key:posts
+    });
   },
 
   /**

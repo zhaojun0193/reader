@@ -1,12 +1,13 @@
 <view class='container'>
-  <image class='head-image' src='/images/post/sls.jpg'></image>
+  <image class='head-image' src='{{postData.headImgSrc}}'></image>
+  <image class='audio' src='/images/music/music-start.png'></image>
   <view class='author-date'>
-    <image class='avatar' src='/images/avatar/1.png'></image>
-    <text class='author'>卑微幻想家</text>
+    <image class='avatar' src='{{postData.avatar}}'></image>
+    <text class='author'>{{postData.author}}</text>
     <text class='const-text'>发表于</text>
-    <text class='date'>三天前</text>
+    <text class='date'>{{postData.dateTime}}</text>
   </view>
-  <text class='title'>他仅仅代表着我想给你快乐</text>
+  <text class='title'>{{postData.title}}</text>
 
   <view class='tool'>
     <view class='circle-img'>
@@ -15,6 +16,5 @@
     </view>
     <view class='horizon'></view>
   </view>
-  <text class='detail'>《有何不可》是Vae(许嵩)首张个人专辑《自定义》主打歌曲
-Vae充满弹性的咬字，绝佳的律动感，一把什么都不在乎的懒懒的声音，诠释着“只想为你唱首歌，没有什么风格，为你放弃世界又有何不可”的大无畏年轻主义。连宣传主打曲的口白部分，这个23岁的大男生居然都用自由的Rap来和歌迷打招呼，创意多多的Vae总能带来惊喜！</text>
+  <text class='detail'>{{postData.detail}}</text>
 </view>

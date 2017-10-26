@@ -86,5 +86,15 @@
   margin-right: 30rpx;
   line-height: 44rpx;
   letter-spacing: 2px;
-  font-size: 24rpx;
+  font-size: 25rpx;
+}
+
+.audio{
+  width: 102rpx;
+  height: 110rpx;
+  position: absolute;
+  left: 50%;
+  margin-left: -51rpx;
+  top: 180rpx;
+  opacity: 0.6;
 }

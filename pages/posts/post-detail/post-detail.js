@@ -1,3 +1,4 @@
+var postData = require('../../../data/posts-data.js')
 Page({
 
   /**
@@ -11,7 +12,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var postId = options.id;
+    var detail = postData.postList[postId];
+    // console.log(data);
     
+    this.setData({
+      postData : detail 
+    });
   },
 
   /**

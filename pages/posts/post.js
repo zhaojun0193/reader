@@ -1,6 +1,6 @@
 // pages/posts/post.js
 var postData = require('../../data/posts-data.js')
-console.log(postData)
+// console.log(postData)
 Page({
 
   /**
@@ -71,9 +71,9 @@ Page({
   onPostTap: function(event){
     //拿到 data-postid的值
     var postId = event.currentTarget.dataset.postId;
-    console.log(postId);
+    // console.log(postId);
     wx.navigateTo({
-      url: '../posts/post-detail/post-detail',
+      url: '../posts/post-detail/post-detail?id='+postId,
     })
   }
 })

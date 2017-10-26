@@ -8,6 +8,8 @@
   </swiper>
 
   <block wx:for="{{post_key}}" wx:for-item="item" wx:key="*this">
-   <template is='postItem' data='{{item}}'/>
+   <view catchtap='onPostTap' data-post-id='{{item.postId}}'>
+    <template is='postItem' data='{{...item}}'/>
+   </view>
   </block>
 </view>

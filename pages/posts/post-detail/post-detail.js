@@ -13,60 +13,44 @@ Page({
    */
   onLoad: function (options) {
     var postId = options.id;
+    this.data.postId = postId; 
     var detail = postData.postList[postId];
     // console.log(data);
-    
     this.setData({
       postData : detail 
     });
+
+    //获取文章是否被收藏
+    var postsCollected = wx.getStorageSync('posts_collected');
+    //判断是否有缓存
+    if(postsCollected){
+      this.setData({
+        collected: postsCollected[this.data.postId]
+      })
+    }else{
+      postsCollected = {};
+      postsCollected[postId] = false;
+      wx.setStorageSync('posts_collected', postsCollected);
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
+ //收藏事件
+  onCollectedTap:function(){
+    // console.log('collect')
+    //判断当前文章是否被收藏
+    var postsCollected = wx.getStorageSync('posts_collected');
+    var postCollected = postsCollected[this.data.postId];
+    console.log(postCollected)
+    postCollected = !postCollected;
+    postsCollected[this.data.postId] = postCollected;
+    wx.setStorageSync('posts_collected', postsCollected);
+    this.setData({
+      collected: postCollected
+    })
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+    wx.showToast({
+      title: postCollected ? '收藏成功' : '取消成功'
+    })
     
   }
 })

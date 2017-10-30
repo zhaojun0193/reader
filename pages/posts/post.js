@@ -61,13 +61,6 @@ Page({
   
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-
   onPostTap: function(event){
     //拿到 data-postid的值
     var postId = event.currentTarget.dataset.postId;

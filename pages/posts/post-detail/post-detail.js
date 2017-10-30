@@ -52,5 +52,25 @@ Page({
       title: postCollected ? '收藏成功' : '取消成功'
     })
     
+  },
+
+  //分享事件
+  onShareTap:function(){
+    // var shareList = [
+    //   '分享给朋友',
+    //   '分享到群聊'
+    // ]
+    // wx.showActionSheet({
+    //   itemList: shareList,
+    //   itemColor: '#405f80'
+    // })
+    this.onShareAppMessage();
+  },
+  onShareAppMessage:function(){
+    return {
+      title: this.data.postData.title,
+      desc: this.data.postData.title,
+      path: '/pages/posts/post-detail/post-detail?id=' + this.data.postId,
+    }
   }
 })

@@ -1,5 +1,5 @@
 <view class='container'>
-  <image class='head-image' src='{{postData.headImgSrc}}'></image>
+  <image class='head-image' src='{{isPlayingMusic? postData.music.coverImg : postData.headImgSrc}}'></image>
   <image class='audio' wx:if='{{isPlayingMusic}}' catchtap='musicTap' src='/images/music/music-stop.png'></image>
   <image class='audio' wx:else catchtap='musicTap' src='/images/music/music-start.png'></image>
   <view class='author-date'>

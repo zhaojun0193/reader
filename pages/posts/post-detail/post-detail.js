@@ -1,4 +1,6 @@
-var postData = require('../../../data/posts-data.js')
+var postData = require('../../../data/posts-data.js');
+var app = getApp();
+
 Page({
 
   /**
@@ -14,11 +16,21 @@ Page({
   onLoad: function (options) {
     var postId = options.id;
     this.data.postId = postId; 
+    //获取全局播放标识
+    var globalData = app.globalData;
+
     var detail = postData.postList[postId];
     // console.log(data);
     this.setData({
       postData : detail 
     });
+
+    //判断音乐是否播放
+    if (globalData.g_isPlayMusic){
+      this.setData({
+        isPlayingMusic: true
+      })
+    }
 
     //获取文章是否被收藏
     var postsCollected = wx.getStorageSync('posts_collected');
@@ -32,6 +44,30 @@ Page({
       postsCollected[postId] = false;
       wx.setStorageSync('posts_collected', postsCollected);
     }
+
+    var that = this;
+    //监听音乐播放
+    wx.onBackgroundAudioPlay(function(){
+      app.globalData.g_isPlayMusic = true
+      that.setData({
+        isPlayingMusic: true
+      })
+    })
+    //监听音乐暂停
+    wx.onBackgroundAudioPause(function(){
+      app.globalData.g_isPlayMusic = false
+      that.setData({
+        isPlayingMusic: false
+      })
+    })
+
+    //监听音乐停止
+    wx.onBackgroundAudioStop(function(){
+      app.globalData.g_isPlayMusic = false
+      that.setData({
+        isPlayingMusic: false
+      })
+    })
   },
 
  //收藏事件
@@ -55,7 +91,7 @@ Page({
   },
 
   //分享事件
-  onShareTap:function(){
+  // onShareTap:function(){
     // var shareList = [
     //   '分享给朋友',
     //   '分享到群聊'
@@ -64,8 +100,8 @@ Page({
     //   itemList: shareList,
     //   itemColor: '#405f80'
     // })
-    this.onShareAppMessage();
-  },
+    // this.onShareAppMessage();
+  // },
   onShareAppMessage:function(){
     return {
       title: this.data.postData.title,
@@ -82,6 +118,7 @@ Page({
     if(isPlayMusic){
       //暂停音乐播放
       wx.pauseBackgroundAudio();
+   
       this.setData({
         isPlayingMusic : false
       })
@@ -91,6 +128,7 @@ Page({
         title: postData.music.title,
         coverImgUrl: postData.music.coverImg
       })
+
       this.setData({
         isPlayingMusic: true
       })

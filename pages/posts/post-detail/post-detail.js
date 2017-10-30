@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    isPlayingMusic : false
   },
 
   /**
@@ -74,11 +74,26 @@ Page({
     }
   },
 
+  //音乐播放事件
   musicTap:function(){
-    wx.playBackgroundAudio({
-      dataUrl: 'http://ws.stream.qqmusic.qq.com/C100003507bR0gDKBm.m4a?fromtag=38',
-      title: "夜夜夜夜-齐秦",
-      coverImgUrl:'http://y.gtimg.cn/music/photo_new/T002R150x150M000001TEc6V0kjpVC.jpg?max_age=2592000'
-    })
+    var isPlayMusic = this.data.isPlayingMusic;
+    var postData = this.data.postData;
+    // console.log(postData);
+    if(isPlayMusic){
+      //暂停音乐播放
+      wx.pauseBackgroundAudio();
+      this.setData({
+        isPlayingMusic : false
+      })
+    }else{
+      wx.playBackgroundAudio({
+        dataUrl: postData.music.url,
+        title: postData.music.title,
+        coverImgUrl: postData.music.coverImg
+      })
+      this.setData({
+        isPlayingMusic: true
+      })
+    }
   }
 })

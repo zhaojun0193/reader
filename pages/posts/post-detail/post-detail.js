@@ -26,7 +26,7 @@ Page({
     });
 
     //判断音乐是否播放
-    if (globalData.g_isPlayMusic){
+    if (globalData.g_isPlayMusic && app.globalData.g_currentMusicePostId == postId){
       this.setData({
         isPlayingMusic: true
       })
@@ -49,6 +49,7 @@ Page({
     //监听音乐播放
     wx.onBackgroundAudioPlay(function(){
       app.globalData.g_isPlayMusic = true
+      app.globalData.g_currentMusicePostId = that.data.postId;
       that.setData({
         isPlayingMusic: true
       })
@@ -56,6 +57,7 @@ Page({
     //监听音乐暂停
     wx.onBackgroundAudioPause(function(){
       app.globalData.g_isPlayMusic = false
+      app.globalData.g_currentMusicePostId = null;
       that.setData({
         isPlayingMusic: false
       })

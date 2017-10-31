@@ -68,5 +68,16 @@ Page({
     wx.navigateTo({
       url: '../posts/post-detail/post-detail?id='+postId,
     })
+  },
+
+  //target指的是当前点击的组件 currentTarget指的是事件捕获的组件
+
+  onPostDetailTap:function(event){
+    //拿到 data-postid的值
+    var postId = event.target.dataset.postId;
+    // console.log(postId);
+    wx.navigateTo({
+      url: '../posts/post-detail/post-detail?id=' + postId,
+    })
   }
 })

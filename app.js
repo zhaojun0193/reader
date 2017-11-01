@@ -2,7 +2,8 @@ App({
 
   globalData:{
     g_isPlayMusic:false,
-    g_currentMusicePostId:null
+    g_currentMusicePostId:null,
+    doubanBaseUrl : 'https://api.douban.com'
   },
 
   /**
